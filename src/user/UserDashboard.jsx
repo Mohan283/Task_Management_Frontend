@@ -4,6 +4,7 @@ import { LuLayoutDashboard, LuSquarePlus, LuClipboardCheck, LuUsers, LuLogOut } 
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState,useRef } from "react";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const UserDashboard = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
 
-      const res = await axios.get("http://localhost:8000/user/me", {
+      const res = await axios.get(`${API_URL}/user/me`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

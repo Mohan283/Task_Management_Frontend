@@ -1,5 +1,6 @@
 import React, { useState, useEffect, createContext } from "react";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const UserContext = createContext();
 
@@ -16,7 +17,7 @@ useEffect(() => {
   }
 
   axios
-    .get("http://localhost:8000/user/me", {
+    .get(`${API_URL}/user/me`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useEffect } from "react";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const UpdateTask = () => {
   const { id } = useParams()
@@ -16,7 +17,7 @@ const UpdateTask = () => {
      useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/user/allUser");
+        const response = await axios.get(`${API_URL}/user/allUser`);
         setUser(response.data)
 
       } catch (error) {
@@ -47,7 +48,7 @@ const UpdateTask = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/task/single-task/${id}`)
+      .get(`${API_URL}/task/single-task/${id}`)
       .then((res) => {
         console.log("FULL RESPONSE:", res.data);
         const t = res.data;
@@ -88,7 +89,7 @@ const UpdateTask = () => {
     }
 
     await axios.put(
-      `http://localhost:8000/task/update-task/${id}`,
+      `${API_URL}/task/update-task/${id}`,
       formData,
       {
         headers: {

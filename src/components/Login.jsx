@@ -5,6 +5,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import { UserContext } from '../context/userContext'
 import toast from "react-hot-toast";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Login = () => {
 
@@ -41,7 +42,7 @@ const Login = () => {
 
   try {
     const response = await axios.post(
-      "http://localhost:8000/user/login",
+      `${API_URL}/user/login`,
       { email, password }
     );
 

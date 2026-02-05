@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+const API_URL = import.meta.env.VITE_API_URL;
 
 const UserTeamMembers = () => {
 
@@ -8,7 +9,7 @@ const UserTeamMembers = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/user/allUser");
+        const response = await axios.get(`${API_URL}/user/allUser`);
         setUser(response.data)
 
       } catch (error) {

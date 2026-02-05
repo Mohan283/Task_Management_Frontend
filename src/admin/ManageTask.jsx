@@ -3,7 +3,7 @@ import axios from 'axios';
 import {Link} from 'react-router-dom'
 import { LuTrash, LuUserPen   } from "react-icons/lu";
 import toast from 'react-hot-toast';
-
+const API_URL = import.meta.env.VITE_API_URL;
 
 const ManageTask = () => {
 
@@ -15,7 +15,7 @@ const dataTableRef = useRef(null);
   useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await axios.get("http://localhost:8000/task/manage-task");
+          const response = await axios.get(`${API_URL}/task/manage-task`);
           setGetTask(response.data.tasks)
   
         } catch (error) {
@@ -42,7 +42,7 @@ const dataTableRef = useRef(null);
 
    async function delTask(taskId) {
   try {
-    await axios.delete(`http://localhost:8000/task/delete-task/${taskId}`);
+    await axios.delete(`${API_URL}/task/delete-task/${taskId}`);
 
     // Update state
     setGetTask(prevData => prevData.filter(task => task._id !== taskId));

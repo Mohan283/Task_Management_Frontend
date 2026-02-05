@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { LuTrash } from "react-icons/lu";
 import toast from "react-hot-toast";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const CreateTask = () => {
 
@@ -21,7 +22,7 @@ const CreateTask = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/user/allUser");
+        const response = await axios.get(`${API_URL}/user/allUser`);
         setUser(response.data)
 
       } catch (error) {

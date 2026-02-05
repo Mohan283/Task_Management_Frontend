@@ -6,6 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Register = () => {
   const [profilePic, setProfilePic] = useState(null);
   const [name, setName] = useState("");
@@ -52,7 +54,7 @@ const Register = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:8000/user/user-register",
+       `${API_URL}/user/user-register`,
         formData);
 
       console.log("Signup success:", response.data);

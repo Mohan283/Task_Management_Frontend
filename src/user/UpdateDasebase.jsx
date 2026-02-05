@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {Link, useParams, useNavigate } from "react-router-dom";
+const API_URL = import.meta.env.VITE_API_URL;
 
 
 const UpdateDasebase = () => {
@@ -9,13 +10,13 @@ const UpdateDasebase = () => {
   const [form, setForm] = useState({});
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/user/singleDbData/${id}`)
+    axios.get(`${API_URL}/user/singleDbData/${id}`)
       .then(res => setForm(res.data));
   }, [id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:8000/user/update-database/${id}`, form);
+    await axios.put(`${API_URL}/user/update-database/${id}`, form);
     navigate("/user-dashboard/view-database");
   };
 

@@ -4,6 +4,7 @@ import { LuTrash, LuUserPen } from "react-icons/lu";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import {Link} from 'react-router-dom'
+const API_URL = import.meta.env.VITE_API_URL;
 
 
 const ViewDatabase = () => {
@@ -27,7 +28,7 @@ const ViewDatabase = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get("http://localhost:8000/user/allDbData");
+            const response = await axios.get(`${API_URL}/user/allDbData`);
             setdbData(response.data);
             setFilteredData(response.data);
         } catch (error) {
@@ -85,7 +86,7 @@ const ViewDatabase = () => {
 
         async function delDB(taskId)
     {
-        await axios.delete(`http://localhost:8000/user/delete-database/${taskId}`)
+        await axios.delete(`${API_URL}/user/delete-database/${taskId}`)
         .then((res)=>
         {
             setdbData((prevData)=>prevData.filter((task)=>task._id !==taskId)) 

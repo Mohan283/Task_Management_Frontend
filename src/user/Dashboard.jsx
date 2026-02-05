@@ -6,6 +6,7 @@ import { LuCalendar } from "react-icons/lu";
 import toast from 'react-hot-toast'
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Dashboard = () => {
 
@@ -23,7 +24,7 @@ const Dashboard = () => {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
 
-      const res = await axios.get("http://localhost:8000/user/me", {
+      const res = await axios.get(`${API_URL}/user/me`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -81,7 +82,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchUserCounts = async () => {
       const res = await axios.get(
-        "http://localhost:8000/task/my-task-counts",
+        `${API_URL}/task/my-task-counts`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -100,7 +101,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchUserTasks = async () => {
       const res = await axios.get(
-        "http://localhost:8000/task/my-tasks",
+        `${API_URL}/task/my-tasks`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -126,7 +127,7 @@ const Dashboard = () => {
       const updatedStatus = statusMap[taskId];
 
       await axios.put(
-        `http://localhost:8000/task/update-status/${taskId}`,
+        `${API_URL}/task/update-status/${taskId}`,
         { status: updatedStatus },
         {
           headers: {
@@ -255,7 +256,7 @@ const Dashboard = () => {
                           {task.attachments.map((file, index) => (
                             <li key={index}>
                               <a
-                                href={`http://localhost:8000${file.filePath}`}
+                                href={`${API_URL}${file.filePath}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="attachment-link"

@@ -1,6 +1,7 @@
 import '../style.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+const API_URL = import.meta.env.VITE_API_URL;
 
 const MainDashboard = () => {
   const [taskCounts, setTaskCounts] = useState({
@@ -37,7 +38,7 @@ const MainDashboard = () => {
 
   useEffect(() => {
     const fetchTasks = async () => {
-      const res = await axios.get("http://localhost:8000/task/manage-task");
+      const res = await axios.get(`${API_URL}/task/manage-task`);
       setTasks(res.data.tasks);
       setTaskCounts(res.data.counts);
     };
