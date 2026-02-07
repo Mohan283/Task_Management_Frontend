@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import API from '../config/api'
 import { uploadImage } from "../user/uploadImage";
 
+
 const Register = () => {
   const [profilePic, setProfilePic] = useState(null);
   const [name, setName] = useState("");
