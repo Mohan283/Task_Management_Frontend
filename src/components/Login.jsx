@@ -2,7 +2,6 @@ import { useState, useContext} from "react";
 import '../style.css';
 import bg from '../assets/bg.svg'
 import {Link, useNavigate} from 'react-router-dom'
-import axios from 'axios';
 import { UserContext } from '../context/userContext'
 import toast from "react-hot-toast";
 const API_URL = import.meta.env.VITE_API_URL;
@@ -41,8 +40,8 @@ const Login = () => {
   }
 
   try {
-    const response = await axios.post(
-      `${API_URL}/user/login`,
+    const response = await API.post(
+      '/user/login',
       { email, password }
     );
 

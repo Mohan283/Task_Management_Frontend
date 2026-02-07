@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { LuTrash } from "react-icons/lu";
 import toast from "react-hot-toast";
-const API_URL = import.meta.env.VITE_API_URL;
 
 const CreateTask = () => {
 
@@ -22,7 +21,7 @@ const CreateTask = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${API_URL}/user/allUser`);
+        const response = await API.get('/user/allUser');
         setUser(response.data)
 
       } catch (error) {
@@ -74,8 +73,8 @@ const CreateTask = () => {
         formData.append("attachments", file);
       });
 
-      await axios.post(
-        "http://localhost:8000/task/create-task",
+      await API.post(
+        "/task/create-task",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

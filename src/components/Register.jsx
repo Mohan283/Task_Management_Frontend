@@ -3,10 +3,8 @@ import "../style.css";
 import bg from "../assets/bg.svg";
 import ProfilePhotoSelector from "./ProfilePhotoSelector";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import toast from "react-hot-toast";
-
-const API_URL = import.meta.env.VITE_API_URL;
+import API from '../config/api'
 
 const Register = () => {
   const [profilePic, setProfilePic] = useState(null);
@@ -32,41 +30,49 @@ const Register = () => {
 };
 
   const handleSignUp = async (e) => {
-    e.preventDefault();
-    setError(null);
+  e.preventDefault();
+  setError(null);
 
-      const validationError = validateLogin();
+  const validationError = validateLogin();
   if (validationError) {
     toast.error(validationError);
     return;
   }
- 
 
-    try {
-      const formData = new FormData();
+  try {
+    let profileImageUrl = "";
 
-      formData.append("name", name);
-      formData.append("email", email);
-      formData.append("password", password);
-
-      if (profilePic) {
-        formData.append("profileImage", profilePic); // 👈 important
-      }
-
-      const response = await axios.post(
-       `${API_URL}/user/user-register`,
-        formData);
-
-      console.log("Signup success:", response.data);
-      navigate("/");
-    } catch (err) {
-      console.error("Signup error:", err.response || err);
-      setError(
-        err.response?.data?.message ||
-          "Something went wrong. Please try again."
-      );
+    // 1️⃣ Upload image first
+    if (profilePic) {
+      const uploadRes = await uploadImage(profilePic);
+      profileImageUrl = uploadRes.imageUrl; // adjust key if needed
     }
-  };
+
+    // 2️⃣ Register user (JSON)
+    const payload = {
+      name,
+      email,
+      password,
+      profileImageUrl
+    };
+
+    const response = await API.post(
+      '/user/user-register',
+      payload,
+      { headers: { "Content-Type": "application/json" } }
+    );
+
+    console.log("Signup success:", response.data);
+    navigate("/");
+  } catch (err) {
+    console.error("Signup error:", err.response || err);
+    setError(
+      err.response?.data?.message ||
+      "Something went wrong. Please try again."
+    );
+  }
+};
+
 
   return (
     <div className="container-fluid">

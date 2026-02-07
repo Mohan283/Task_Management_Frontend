@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
-import axios from 'axios'
 import toast from "react-hot-toast";
-const API_URL = import.meta.env.VITE_API_URL;
 
 import { useNavigate } from "react-router-dom"
 
@@ -39,8 +37,8 @@ e.preventDefault();
     return;
   }
     try {
-      const response = await axios.post(
-        `${API_URL}/user/database`,
+      const response = await API.post(
+        '/user/database',
         data);
       setData(response.data)
       toast.success("Data saved Successfully")

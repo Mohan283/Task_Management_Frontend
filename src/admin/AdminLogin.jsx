@@ -4,7 +4,6 @@ import bg from '../assets/bg.svg'
 import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import toast from "react-hot-toast";
-const API_URL = import.meta.env.VITE_API_URL;
 
 const AdminLogin = () => {
 
@@ -39,8 +38,8 @@ const AdminLogin = () => {
   }
 
   try {
-    const response = await axios.post(
-      `${API_URL}/auth/admin-login`,
+    const response = await API.post(
+      '/auth/admin-login',
       { email, password },
       { withCredentials: true }
     );

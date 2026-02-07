@@ -1,9 +1,7 @@
 import {useState, useEffect, useRef} from 'react'
-import axios from 'axios'
 import {Link} from 'react-router-dom';
 import { LuTrash, LuUserPen   } from "react-icons/lu";
 import toast from 'react-hot-toast'
-const API_URL = import.meta.env.VITE_API_URL;
 
 const UserManageTask = () => {
 
@@ -35,8 +33,8 @@ const UserManageTask = () => {
 
      useEffect(() => {
     const fetchUserTasks = async () => {
-      const res = await axios.get(
-        `${API_URL}/task/my-tasks`,
+      const res = await API.get(
+        '/task/my-tasks',
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -51,7 +49,7 @@ const UserManageTask = () => {
 
      async function delTask(taskId)
     {
-        await axios.delete(`${API_URL}/task/delete-task/${taskId}`)
+        await API.delete(`/task/delete-task/${taskId}`)
         .then((res)=>
         {
             setTasks((prevData)=>prevData.filter((task)=>task._id !==taskId)) 

@@ -1,12 +1,11 @@
 import '../style.css';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { DateRangePicker } from "react-date-range";
 import { LuCalendar } from "react-icons/lu";
 import toast from 'react-hot-toast'
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-const API_URL = import.meta.env.VITE_API_URL;
+
 
 const Dashboard = () => {
 
@@ -24,7 +23,7 @@ const Dashboard = () => {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
 
-      const res = await axios.get(`${API_URL}/user/me`, {
+      const res = await API.get('/user/me', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -81,8 +80,8 @@ const Dashboard = () => {
   /* ---------------- FETCH COUNTS (ADMIN DATA) ---------------- */
   useEffect(() => {
     const fetchUserCounts = async () => {
-      const res = await axios.get(
-        `${API_URL}/task/my-task-counts`,
+      const res = await API.get(
+        '/task/my-task-counts',
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -100,8 +99,8 @@ const Dashboard = () => {
   /* ---------------- FETCH USER TASKS ---------------- */
   useEffect(() => {
     const fetchUserTasks = async () => {
-      const res = await axios.get(
-        `${API_URL}/task/my-tasks`,
+      const res = await API.get(
+        '/task/my-tasks',
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -126,8 +125,8 @@ const Dashboard = () => {
     try {
       const updatedStatus = statusMap[taskId];
 
-      await axios.put(
-        `${API_URL}/task/update-status/${taskId}`,
+      await API.put(
+        `/task/update-status/${taskId}`,
         { status: updatedStatus },
         {
           headers: {
