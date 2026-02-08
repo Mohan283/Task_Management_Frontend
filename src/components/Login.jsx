@@ -4,7 +4,7 @@ import bg from '../assets/bg.svg'
 import {Link, useNavigate} from 'react-router-dom'
 import { UserContext } from '../context/userContext'
 import toast from "react-hot-toast";
-const API_URL = import.meta.env.VITE_API_URL;
+import API from '../config/api'
 
 const Login = () => {
 
