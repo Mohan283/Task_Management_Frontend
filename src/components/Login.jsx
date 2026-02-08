@@ -29,39 +29,43 @@ const Login = () => {
   return null;
 };
 
- const handleLogin = async (e) => {
+const handleLogin = async (e) => {
   e.preventDefault();
-  setError("");
+  console.log("LOGIN SUBMITTED");
 
-   const validationError = validateLogin();
+  setError(null);
+
+  const validationError = validateLogin();
   if (validationError) {
-     toast.error(validationError);
+    toast.error(validationError);
     return;
   }
 
   try {
-    const response = await API.post(
-      '/user/login',
-      { email, password }
-    );
+    const response = await API.post("/user/login", {
+      email,
+      password,
+    });
 
-    const token = response.data.token;
-    if (!token) return setError("Login failed: no token returned");
+    console.log("Login response:", response.data);
 
-    localStorage.setItem("token", token);
-   updateUser({
-  _id: response.data._id,
-  name: response.data.name,
-  email: response.data.email,
-  profileImageUrl: response.data.profileImageUrl,
-});
+    localStorage.setItem("token", response.data.token);
 
-navigate("/user-dashboard", { replace: true });
+    updateUser({
+      _id: response.data._id,
+      name: response.data.name,
+      email: response.data.email,
+      profileImageUrl: response.data.profileImageUrl,
+    });
 
+    navigate("/user-dashboard", { replace: true });
   } catch (err) {
-    setError(err.response?.data?.message || "Login failed, try again");
+    console.error("Login error:", err);
+    setError(err.response?.data?.message || "Login failed");
+    toast.error(err.response?.data?.message || "Login failed");
   }
 };
+
 
 
   return (
