@@ -2,8 +2,8 @@ import { useState} from "react";
 import '../style.css';
 import bg from '../assets/bg.svg'
 import {Link, useNavigate} from 'react-router-dom'
-import axios from 'axios';
 import toast from "react-hot-toast";
+import API from '../config/api'
 
 const AdminLogin = () => {
 
@@ -41,7 +41,6 @@ const AdminLogin = () => {
     const response = await API.post(
       '/auth/admin-login',
       { email, password },
-      { withCredentials: true }
     );
 
     sessionStorage.setItem("isLoggedIn", "true");

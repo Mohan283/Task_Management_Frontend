@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext } from "react";
-const API_URL = import.meta.env.VITE_API_URL;
+import API from '../config/api'
 
 export const UserContext = createContext();
 

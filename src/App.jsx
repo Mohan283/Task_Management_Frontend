@@ -60,7 +60,7 @@ function App() {
           
             
             </Route>
- <Route path="/update-database/:id" element={<UpdateDasebase />} />
+          <Route path="/update-database/:id" element={<UpdateDasebase />} />
         </Routes>
       </Router>
     </>
