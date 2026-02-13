@@ -6,7 +6,7 @@ export const uploadImage = async (file) => {
   const formData = new FormData();
   formData.append("image", file);
 
-  const res = await API.post("/user/upload-profile", formData, {
+  const res = await API.post("/upload/upload-profile", formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
 
