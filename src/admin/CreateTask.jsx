@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import API from '../config/api'
 import { LuTrash } from "react-icons/lu";
 import toast from "react-hot-toast";
 

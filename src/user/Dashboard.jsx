@@ -5,7 +5,7 @@ import { LuCalendar } from "react-icons/lu";
 import toast from 'react-hot-toast'
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-
+import API from '../config/api'
 
 const Dashboard = () => {
 

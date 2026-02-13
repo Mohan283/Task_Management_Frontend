@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import toast from 'react-hot-toast'
 import { useEffect } from "react";
+import API from '../config/api'
 
 const UpdateTask = () => {
   const { id } = useParams()

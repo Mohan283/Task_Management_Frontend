@@ -3,7 +3,7 @@ import { LuTrash, LuUserPen } from "react-icons/lu";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import {Link} from 'react-router-dom'
-
+import API from '../config/api'
 
 const ViewDatabase = () => {
 
