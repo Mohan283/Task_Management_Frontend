@@ -255,7 +255,7 @@ const Dashboard = () => {
                           {task.attachments.map((file, index) => (
                             <li key={index}>
                               <a
-                                href={`${API_URL}${file.filePath}`}
+                               href={`${API.defaults.baseURL}${file.filePath}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="attachment-link"
