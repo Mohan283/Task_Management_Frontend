@@ -14,7 +14,7 @@ const dataTableRef = useRef(null);
   useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await API.get('API_URL}/task/manage-task');
+          const response = await API.get('/task/manage-task');
           setGetTask(response.data.tasks)
   
         } catch (error) {
