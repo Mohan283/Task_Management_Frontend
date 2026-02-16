@@ -11,7 +11,7 @@ const Dashboard = () => {
 
   const [user, setUser] = useState([]);
 
-   const getFileIcon = (type = "") => {
+  const getFileIcon = (type = "") => {
     if (type.includes("pdf")) return "📄";
     if (type.includes("image")) return "🖼️";
     if (type.includes("word")) return "📝";
@@ -252,30 +252,37 @@ const Dashboard = () => {
                       <div className="mt-2 attachments">
                         <p className="mb-1"><strong>Attachments:</strong></p>
                         <ul className="attachment-list">
-                          {task.attachments.map((file, index) => (
-                            <li key={index}>
-                              <a
-                               href={`${API.defaults.baseURL}${file.filePath}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="attachment-link"
-                              >
-                                {getFileIcon(file.fileType)} {file.originalName}
-                              </a>
-                            </li>
-                          ))}
+                          {task.attachments.map((file, index) => {
+                            const fileUrl = file.filePath?.startsWith("http")
+                              ? file.filePath
+                              : `${API.defaults.baseURL}${file.filePath}`;
+
+                            return (
+                              <li key={index}>
+                                <a
+                                  href={fileUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="attachment-link"
+                                >
+                                  {getFileIcon(file.fileType)} {file.originalName}
+                                </a>
+                              </li>
+                            );
+                          })}
                         </ul>
                       </div>
                     )}
 
+
                     <p
                       className={`card-text card-status ${task.status === "Pending"
-                          ? "status-pending"
-                          : task.status === "In Progress"
-                            ? "status-progress"
-                            : task.status === "Completed"
-                              ? "status-completed"
-                              : ""
+                        ? "status-pending"
+                        : task.status === "In Progress"
+                          ? "status-progress"
+                          : task.status === "Completed"
+                            ? "status-completed"
+                            : ""
                         }`}
                     >
                       Status: {task.status}
