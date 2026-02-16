@@ -10,27 +10,16 @@ const UserManageTask = () => {
      const tableRef = useRef(null);
        const dataTableRef = useRef(null);
 
-          useEffect(() => {
-  if (getTask.length > 0) {
-    // Destroy previous instance
-    if (dataTableRef.current) {
-      dataTableRef.current.destroy();
-      dataTableRef.current = null;
-    }
-
-    // Delay init until DOM is ready
-    setTimeout(() => {
-      dataTableRef.current = new window.DataTable(tableRef.current, {
-        responsive: true,
-        paging: true,
-        searching: true,
-        ordering: true,
-        destroy: true,
-      });
-    }, 0);
+   useEffect(() => {
+  if (getTask.length && !dataTableRef.current) {
+    dataTableRef.current = new window.DataTable(tableRef.current, {
+      responsive: true,
+      paging: true,
+      searching: true,
+      ordering: true,
+    });
   }
-}, [getTask]);
-
+}, [getTask])
 
      useEffect(() => {
     const fetchUserTasks = async () => {
