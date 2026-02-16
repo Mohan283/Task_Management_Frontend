@@ -41,7 +41,7 @@ const dataTableRef = useRef(null);
 
    async function delTask(taskId) {
   try {
-    await API.delete('/task/delete-task/${taskId}');
+    await API.delete(`/task/delete-task/${taskId}`);
 
     // Update state
     setGetTask(prevData => prevData.filter(task => task._id !== taskId));
