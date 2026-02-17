@@ -37,7 +37,7 @@ const MainDashboard = () => {
 
   useEffect(() => {
     const fetchTasks = async () => {
-      const res = await API.get('{API_URL}/task/manage-task');
+      const res = await API.get('/task/manage-task');
       setTasks(res.data.tasks);
       setTaskCounts(res.data.counts);
     };
