@@ -86,11 +86,11 @@ const handleLogin = async (e) => {
    </nav>
       <div className="container-fluid">
         <div className="row login-row">
-          {/* <div className="col-lg-6 col-md-12 col-sm-12 login-col">
+        <div className="col-lg-6 col-md-12 col-sm-12 login-col">
             <div className="login-img">
                     <img src={bg} className='img-fluid login-image'/>
                 </div>
-          </div> */}
+          </div> 
            <div className="col-lg-6 col-md-12 col-sm-12 login-col1">
             <h1 className='signup-head'>Member Login!!!</h1>
               <form onSubmit={handleLogin}>
