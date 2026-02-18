@@ -62,7 +62,7 @@ const AdminLogin = () => {
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav ms-auto mb-2 mb-lg-0 me-5 mt-2 nav-admin">
         <li className="nav-item">
-          <Link className="btn btn-light nav-link admin-log" to="#"> </Link>
+          <Link className="btn btn-light nav-link " to="#"> </Link>
         </li>
       </ul>
     </div>
