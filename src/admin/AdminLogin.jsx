@@ -55,7 +55,7 @@ const AdminLogin = () => {
   return (
     <>
       <div className="container-fluid">
-        <div className="row">
+        <div className="row login-row">
           <div className="col-lg-6 col-md-12 col-sm-12 login-col">
             <div className="login-img">
                     <img src={bg} className='img-fluid login-image'/>
