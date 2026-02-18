@@ -60,7 +60,6 @@ const AdminLogin = () => {
             <div className="login-img">
                     <img src={bg} className='img-fluid login-image'/>
                 </div>
-            er
           </div>
            <div className="col-lg-6 col-md-12 col-sm-12 login-col1">
             <h1 className='signup-head'>Admin login!</h1>
