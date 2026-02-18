@@ -88,7 +88,7 @@ const ManageTask = () => {
                 <td>{index+1}</td>
                 <td>{task.title}</td>
                 <td>{task.description}</td>
-                <td>{task.date}</td>
+                <td>{new Date(task.dueDate).toLocaleDateString('en-gb')}</td>
                 <td>{task.status}</td>
                 <td>{new Date(task.dueDate).toLocaleDateString('en-gb')}</td>
                 <td>
