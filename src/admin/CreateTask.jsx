@@ -67,7 +67,9 @@ const CreateTask = () => {
       formData.append("priority", taskData.priority);
       formData.append("date", taskData.date);
       formData.append("dueDate", taskData.dueDate);
-      formData.append("assignedTo[]", taskData.assignedTo);
+     taskData.assignedTo.forEach((id) => {
+  formData.append("assignedTo", id);
+});
 
       taskData.attachments.forEach((file) => {
         formData.append("attachments", file);
