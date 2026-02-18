@@ -188,17 +188,25 @@ const CreateTask = () => {
             <label>Assigned To</label>
             <select
               className="form-select"
-              value={taskData.assignedTo[0] || ""}
-              onChange={(e) => handleValueChange("assignedTo", e.target.value)}
+              value={taskData.assignedTo.length > 0 ? taskData.assignedTo[0] : ""}
+              onChange={(e) => {
+                const selectedUser = e.target.value;
+                setTaskData((prev) => ({
+                  ...prev,
+                  assignedTo: selectedUser ? [selectedUser] : []
+                }));
+              }}
             >
               <option value="">Select User</option>
 
-              {user.map((item) => (
-                <option key={item._id} value={item._id}>
-                  {item.name}
-                </option>
-              ))}
+              {Array.isArray(user) &&
+                user.map((item) => (
+                  <option key={item._id} value={item._id}>
+                    {item.name}
+                  </option>
+                ))}
             </select>
+
           </div>
         </div>
 
@@ -214,38 +222,38 @@ const CreateTask = () => {
           </div>
         </div>
 
-      <div className="col-lg-4 col-md-6 col-sm-6">
-        {/* Attachments */}
+        <div className="col-lg-4 col-md-6 col-sm-6">
+          {/* Attachments */}
 
-        <div className="create-lab mt-2">
-          <label className="todo-title">Add Attachments</label>
+          <div className="create-lab mt-2">
+            <label className="todo-title">Add Attachments</label>
 
-          <input
-            type="file"
-            multiple
-            onChange={handleFileChange}
-            className="form-input"
-          />
+            <input
+              type="file"
+              multiple
+              onChange={handleFileChange}
+              className="form-input"
+            />
 
-          {/* Selected files preview */}
-          {taskData.attachments.length > 0 && (
-            <div className="attach-list mt-2">
-              {taskData.attachments.map((file, index) => (
-                <div key={index} className="attach-item">
-                  <span className="attach-name">{file.name}</span>
-                  <button
-                    type="button"
-                    className="attach-del-btn"
-                    onClick={() => handleRemoveFile(index)}
-                  >
-                    <LuTrash />
-                  </button>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+            {/* Selected files preview */}
+            {taskData.attachments.length > 0 && (
+              <div className="attach-list mt-2">
+                {taskData.attachments.map((file, index) => (
+                  <div key={index} className="attach-item">
+                    <span className="attach-name">{file.name}</span>
+                    <button
+                      type="button"
+                      className="attach-del-btn"
+                      onClick={() => handleRemoveFile(index)}
+                    >
+                      <LuTrash />
+                    </button>
+                  </div>
+                ))}
               </div>
+            )}
+          </div>
+        </div>
       </div>
 
       <div className="create-btn">
