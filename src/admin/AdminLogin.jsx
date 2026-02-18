@@ -54,6 +54,20 @@ const AdminLogin = () => {
 
   return (
     <>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+  <div className="container-fluid">
+    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span className="navbar-toggler-icon"></span>
+    </button>
+    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul className="navbar-nav ms-auto mb-2 mb-lg-0 me-5 mt-2 nav-admin">
+        <li className="nav-item">
+          <Link className="btn btn-light nav-link admin-log" to="#"> </Link>
+        </li>
+      </ul>
+    </div>
+  </div>
+   </nav>
       <div className="container-fluid">
         <div className="row login-row">
           <div className="col-lg-6 col-md-12 col-sm-12 login-col">
