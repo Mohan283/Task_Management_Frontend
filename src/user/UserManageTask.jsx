@@ -11,7 +11,12 @@ const UserManageTask = () => {
        const dataTableRef = useRef(null);
 
    useEffect(() => {
-  if (getTask.length && !dataTableRef.current) {
+  if (dataTableRef.current) {
+    dataTableRef.current.destroy();
+    dataTableRef.current = null;
+  }
+
+  if (getTask.length) {
     dataTableRef.current = new window.DataTable(tableRef.current, {
       responsive: true,
       paging: true,
@@ -19,7 +24,15 @@ const UserManageTask = () => {
       ordering: true,
     });
   }
-}, [getTask])
+
+  return () => {
+    if (dataTableRef.current) {
+      dataTableRef.current.destroy();
+      dataTableRef.current = null;
+    }
+  };
+}, [getTask]);
+
 
      useEffect(() => {
     const fetchUserTasks = async () => {
@@ -39,8 +52,11 @@ const UserManageTask = () => {
 
      async function delTask(taskId)
     {
-        await API.delete(`/task/delete-task/${taskId}`)
-        .then((res)=>
+       await API.delete(`/task/delete-task/${taskId}`, {
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
+}).then((res)=>
         {
             setTasks((prevData)=>prevData.filter((task)=>task._id !==taskId)) 
             // toast.success(res.data.message,{posistion:"top-center"})
@@ -49,7 +65,8 @@ const UserManageTask = () => {
        
         .catch((err)=>
         {
-            console.log(err)
+            console.log(err);
+  toast.error("Failed to delete task");
         })
     }
 
@@ -79,7 +96,7 @@ const UserManageTask = () => {
                     <td>{index+1}</td>
                     <td>{task.title}</td>
                     <td>{task.description}</td>
-                    <td>{task.date}</td>
+                    <td>{new Date(task.date).toLocaleDateString()}</td>
                     <td>{task.status}</td>
                     <td>{new Date(task.dueDate).toLocaleDateString()}</td>
                     {/* <td>
