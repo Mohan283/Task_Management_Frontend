@@ -38,6 +38,7 @@ function App() {
             <Route  />
             <Route path="create-task" element={<CreateTask />} />
             <Route path="manage-task" element={<ManageTask />} />
+            <Route path="view-database" element={<ViewDatabase/>}/>
             <Route path="team-members" element={<TeamMembers />} />
           </Route>
           <Route path="/update-task/:id" element={<UpdateTask />} />
