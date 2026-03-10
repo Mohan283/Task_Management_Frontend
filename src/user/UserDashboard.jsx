@@ -1,6 +1,6 @@
 
 import { Link, Outlet,useLocation } from 'react-router-dom'
-import { LuLayoutDashboard, LuSquarePlus, LuClipboardCheck, LuUsers, LuLogOut } from 'react-icons/lu';
+import { LuLayoutDashboard, LuSquarePlus, LuClipboardCheck, LuUsers, LuLogOut, LuDatabase  } from 'react-icons/lu';
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState,useRef } from "react";
 import API from '../config/api'
@@ -82,8 +82,14 @@ useEffect(() => {
               <p className='mb-2'></p>
               <Link to="" className='sidebar-menu'>Dashboard</Link>
             </div>
-            <div className="box d-flex justify-content-center align-items-center p-2">
-              <LuSquarePlus />
+          
+              <div className="box d-flex justify-content-center align-items-center p-2">
+                < LuSquarePlus />
+            
+                <Link to="create-task" className='sidebar-menu'>Create Task </Link>
+              </div>
+                <div className="box d-flex justify-content-center align-items-center p-2">
+              <LuDatabase />            
 
               <Link to="database" className='sidebar-menu'>Database </Link>
             </div>

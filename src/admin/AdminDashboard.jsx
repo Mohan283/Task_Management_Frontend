@@ -72,7 +72,7 @@ useEffect(() => {
 
                <div className="box d-flex justify-content-center align-items-center p-2">
                 < LuClipboardCheck />
-                 <Link to="view-database" className='sidebar-menu'>View Database </Link>
+                 <Link to="view-database  " className='sidebar-menu'>View Database </Link>
               </div>
                <div className="box d-flex justify-content-center align-items-center p-2">
                 <LuUsers />

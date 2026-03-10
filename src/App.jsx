@@ -55,6 +55,7 @@ function App() {
 
             <Route path="" element={<Dashboard/>} />
             <Route path="user-manage-task" element={<UserManageTask/>} /> 
+             <Route path="create-task" element={<CreateTask />} />
             <Route path="database" element={<Database/>} /> 
             <Route path="view-database" element={<ViewDatabase/>}/>
             <Route path="user-team-members" element={<UserTeamMembers/>}/>
